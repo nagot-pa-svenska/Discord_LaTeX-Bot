@@ -19,9 +19,15 @@ namespace Discord_LaTeX_Bot
         static void Main(string[] args)
         {
             if (!File.Exists("id.txt"))
-                throw new Exception("Bruh.");
+                throw new FileNotFoundException("Missing \"id.txt\" from current directory, unable to continue.");
 
             Client = new DiscordClient(new DiscordConfiguration { Token = File.ReadAllText("id.txt") });
+
+            Client.Ready += (ReadyEventArgs e) =>
+            {
+                Console.WriteLine("Ready!");
+                return Task.CompletedTask;
+            };
 
             Client.MessageCreated += (MessageCreateEventArgs e) =>
             {
