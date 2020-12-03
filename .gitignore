@@ -3,4 +3,4 @@ build
 obj
 packages
 
-id.txt
+id*.txt
